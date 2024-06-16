@@ -1,0 +1,63 @@
+
+
+# Example Alacritty configuration file
+
+# Configuration for the Alacritty terminal emulator
+import = ["~/github/dotfiles-latest/alacritty/themes/catppuccin/catppuccin-mocha.toml"]
+
+[env]
+# Set environment variables
+# TERM variable
+TERM = "xterm-256color"
+PATH = "/opt/nvim:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:$HOME/.local/bin:/home/alirassolie/anaconda3/bin"
+
+[shell]
+# Path to the shell program to use.
+program = "/usr/bin/bash"
+# Arguments passed to the shell.
+args = ["--login", "-c", "tmux"]
+
+[window]
+# Dynamic padding
+dynamic_padding = true
+# Startup mode
+startup_mode = "Windowed"
+
+[font]
+# Font size
+size = 12.0
+
+[colors]
+[colors.primary]
+background = '#1a1b26'
+foreground = '#a9b1d6'
+
+# Normal colors
+[colors.normal]
+black   = '#32344a'
+red     = '#f7768e'
+green   = '#9ece6a'
+yellow  = '#e0af68'
+blue    = '#7aa2f7'
+magenta = '#ad8ee6'
+cyan    = '#449dab'
+white   = '#787c99'
+
+# Bright colors
+[colors.bright]
+black   = '#444b6a'
+red     = '#ff7a93'
+green   = '#b9f27c'
+yellow  = '#ff9e64'
+blue    = '#7da6ff'
+magenta = '#bb9af7'
+cyan    = '#0db9d7'
+white   = '#acb0d0'
+
+[colors.cursor]
+text = "#282c34"
+cursor = "#528bff"
+
+[colors.selection]
+text = "#282c34"
+background = "#528bff"
