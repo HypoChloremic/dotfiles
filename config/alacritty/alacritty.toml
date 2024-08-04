@@ -1,5 +1,4 @@
 
-
 # Example Alacritty configuration file
 
 # Configuration for the Alacritty terminal emulator
@@ -25,11 +24,11 @@ startup_mode = "Windowed"
 
 [font]
 # Font size
-size = 12.0
+size = 10.0
 
 [colors]
 [colors.primary]
-background = '#1a1b26'
+background = '#0b0e14'
 foreground = '#a9b1d6'
 
 # Normal colors
@@ -61,3 +60,4 @@ cursor = "#528bff"
 [colors.selection]
 text = "#282c34"
 background = "#528bff"
+
