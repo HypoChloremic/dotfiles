@@ -67,3 +67,14 @@ services.xserver = {
 
 Note how we define the path to the se-custom symbols file without quotes. 
 We also have not defined the xkbVariant
+
+
+### To apply the changes
+
+Seemingly to apply the changes we need to run setxkbmap
+
+```sh
+> setxkbmap -I/etc/nixos/xkb/custom se-custom -print
+```
+
+Note that the path is to the parent of symbols
