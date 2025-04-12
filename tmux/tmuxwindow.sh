@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+echo "#################### LAUNCHING TMUX ####################"
+
 TIMESTAMP=$(date +%s)
 
 # Prompt for a base name
