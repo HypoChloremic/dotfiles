@@ -282,18 +282,21 @@ require("lazy").setup({
 			},
 			-- Example: Put "CAPSLOCK" in the top-right (winbar)
 			winbar = {
-				lualine_z = {
-					function()
-						local handle = io.popen("xset -q")
-						if handle then
-							local result = handle:read("*all")
-							handle:close()
-							if result:match("Caps Lock:%s+on") then
-								return "CAPSLOCK"
+				lualine_b = {
+					{
+						function()
+							local handle = io.popen("xset -q")
+							if handle then
+								local result = handle:read("*all")
+								handle:close()
+								if result:match("Caps Lock:%s+on") then
+									return "CAPSLOCK"
+								end
 							end
-						end
-						return ""
-					end,
+							return ""
+						end,
+						color = { fg = "white", bg = "red", gui = "italic,bold" },
+					},
 				},
 			},
 			inactive_winbar = {
@@ -302,13 +305,24 @@ require("lazy").setup({
 			},
 			-- If you want something at the bottom, also set sections = { ... }
 			-- e.g.:
-			-- sections = {
-			--   lualine_c = { 'filename' },
-			--   lualine_z = {
-			--     'location',
-			--     -- or another capslock function if you prefer the bottom
-			--   }
-			-- },
+			sections = {
+				lualine_b = {
+					{
+						function()
+							local handle = io.popen("xset -q")
+							if handle then
+								local result = handle:read("*all")
+								handle:close()
+								if result:match("Caps Lock:%s+on") then
+									return "CAPSLOCK"
+								end
+							end
+							return ""
+						end,
+						color = { fg = "white", bg = "red", gui = "italic,bold" },
+					},
+				},
+			},
 		},
 	},
 
