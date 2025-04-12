@@ -271,6 +271,47 @@ vim.api.nvim_set_keymap("n", "<leader>å", ":lua ToggleDiagnostics()<CR>", { nor
 --
 -- NOTE: Here is where you install your plugins.
 require("lazy").setup({
+	{
+		"nvim-lualine/lualine.nvim",
+		-- 'opts' means Lazy will call `require('lualine').setup(opts)` automatically
+		opts = {
+			options = {
+				theme = "auto",
+				section_separators = "",
+				component_separators = "|",
+			},
+			-- Example: Put "CAPSLOCK" in the top-right (winbar)
+			winbar = {
+				lualine_z = {
+					function()
+						local handle = io.popen("xset -q")
+						if handle then
+							local result = handle:read("*all")
+							handle:close()
+							if result:match("Caps Lock:%s+on") then
+								return "CAPSLOCK"
+							end
+						end
+						return ""
+					end,
+				},
+			},
+			inactive_winbar = {
+				-- Hide in inactive windows (optional)
+				lualine_z = {},
+			},
+			-- If you want something at the bottom, also set sections = { ... }
+			-- e.g.:
+			-- sections = {
+			--   lualine_c = { 'filename' },
+			--   lualine_z = {
+			--     'location',
+			--     -- or another capslock function if you prefer the bottom
+			--   }
+			-- },
+		},
+	},
+
 	-- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 
@@ -617,7 +658,7 @@ require("lazy").setup({
 			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 			local servers = {
 				clangd = {},
-				-- gopls = {},
+				gopls = {},
 				pyright = {},
 				harper_ls = {},
 				rust_analyzer = {},
@@ -696,7 +737,7 @@ require("lazy").setup({
 				-- Disable "format_on_save lsp_fallback" for languages that don't
 				-- have a well standardized coding style. You can add additional
 				-- languages here or re-enable it for the disabled ones.
-				local disable_filetypes = { c = true, cpp = true }
+				local disable_filetypes = { c = true, cpp = true, html = true }
 				return {
 					timeout_ms = 500,
 					lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
@@ -705,11 +746,11 @@ require("lazy").setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
 				-- Conform can also run multiple formatters sequentially
-				-- python = { "isort", "black" },
+				python = { "isort", "black" },
 				--
 				-- You can use a sub-list to tell conform to run *until* a formatter
 				-- is found.
-				-- javascript = { { "prettierd", "prettier" } },
+				javascript = { { "prettierd", "prettier" } },
 			},
 		},
 	},
